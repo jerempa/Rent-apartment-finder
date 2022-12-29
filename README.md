@@ -12,4 +12,4 @@ After installing the needed libraries, the program should work and it starts by 
 
 ## Future plans
 
-The program doesn't have any unittests at the moment, and I'm planning to implement them in the near future. Also the program works only with rent apartments in Helsinki. Most likely going to change this so it works in any city.
+The program doesn't have any unittests at the moment, and I'm planning to implement them in the near future. Also the program works only with rent apartments in Helsinki. Most likely going to change this so it works in any city in Finland.
