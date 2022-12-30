@@ -2,6 +2,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import sys
+import os
 from criteria import Criteria
 from requests_file import Requests
 from file_operations import FileOperations
@@ -71,13 +72,13 @@ class Window(QMainWindow):
                 self.msgbox.setIcon(QMessageBox.Information)
                 self.msgbox.setText("Didn't find any suitable apartments. Perhaps you should change your parametres?")
             else:
-                response = self.msgbox.question(window, "Apartments", f"Found {len(self.file_operations.return_apartment_urls())} apartment(s)! Open the url(s)?", self.msgbox.Yes | self.msgbox.No)
+                response = self.msgbox.question(window, "Apartments found", f"Found {len(self.file_operations.return_apartment_urls())} apartment(s)! Open the url(s)?", self.msgbox.Yes | self.msgbox.No)
                 if response == self.msgbox.Yes:
                     for i in self.file_operations.return_apartment_urls():
                         webbrowser.open(i)
                     self.msgbox.setVisible(False)
                 elif response == self.msgbox.No:
-                    self.msgbox.setText("The url(s) can be found in a file called 'apartment_info_updated.txt'")
+                    self.msgbox.setText("You can open the URLs from the button on the right side")
         self.msgbox.setFont(QFont("Arial", 14))
 
         self.msgbox.setGeometry(200, 500, 650, 100)
@@ -167,7 +168,18 @@ class Window(QMainWindow):
         self.progress.hide()
         self.progress_label.setText("")
         self.num_of_apartments_msgbox(2) #user confirms the added parametres, show the progress bar and when the GET requests are done, show many apartments were found and if the user wants to open the URLs
+        if len(self.file_operations.return_apartment_urls()) > 0:
+            self.open_apartment_file()
 
+    def open_apartment_file(self):
+        self.apartments = QPushButton("Open the URLs", clicked=lambda: self.open_urls())
+        self.apartments.setFont(QFont("Arial", 13))
+        self.apartments.setGeometry(700, 650, 250, 50)
+        self.layout().addWidget(self.apartments)
+
+    def open_urls(self):
+        for i in self.file_operations.return_apartment_urls():
+            webbrowser.open(i)
 
 
 
