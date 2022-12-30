@@ -9,7 +9,7 @@ class ErrorHandling:
         if not isinstance(input, str):
             raise ValueError("The input must be a string")
         if not input:
-            raise ValueError("Input wasn't given")
+            raise ValueError("Input wasn't given") #check that there is a input and it's a string
 
         input = input.split(',')
         for i in input:
@@ -17,7 +17,7 @@ class ErrorHandling:
                 if int(i) < 100 or int(i) > 990:
                     raise ValueError("Inputted postal codes were incorrect!")
             except ValueError:
-                raise ValueError("Inputted postal codes were incorrect!")
+                raise ValueError("Inputted postal codes were incorrect!") #check that the user has inputted postal codes only
         return True
 
     # def validate_integer_input(self, input):

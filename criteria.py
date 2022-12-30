@@ -30,7 +30,6 @@ class Criteria:
         return self.size
 
     def return_num_of_apartments(self):
-        #print(self, "jee", self.number_of_apartments)
         return self.number_of_apartments
 
     def return_num_of_pages(self):
