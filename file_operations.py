@@ -14,9 +14,7 @@ class FileOperations:
         return self.applicable_apartment_urls
 
     def write_data(self, data):
-        if data != 1:
-            self.data = data
-        if self.data['start'] == 0 or data == 1:
+        if self.data['start'] == 0:
             f = open("apartment_info.txt", "w")
         else:
             f = open("apartment_info.txt", "a")

@@ -1,18 +1,10 @@
 import unittest
 from input_validation import ErrorHandling
 from criteria import Criteria
+from url_compiler import Compiler
+from file_operations import FileOperations
+import string
 import random
-
-#test_object = Functionality("random_url")
-
-
-# random_id = ''.join(random.choice(string.ascii_lowercase) for i in range(50))
-# random_name = ''.join(random.choice(string.ascii_lowercase) for i in range(20))
-# random_price = random.randint(100, 250000)
-# random_availability = random.randint(0, 500)
-# test_dict = [{"inventoryId": random_id, "pricePerItem": random_price, "availability": random_availability, "name": random_name}]
-
-#correct_output = {random_id: [random_name, random_price, random_availability]}
 
 
 errorObject = ErrorHandling()
@@ -65,7 +57,6 @@ class TestCriteria(unittest.TestCase):
 
     def test_num_of_apartments(self):
         self.assertEqual(random_num_of_apartments, criteriaObject.return_num_of_apartments(), f"The return value should be {random_num_of_apartments}")
-
     def test_return_floor_number(self):
         self.assertEqual(random_floor_number, criteriaObject.return_floor(), f"The return value should be {random_floor_number}")
 
@@ -77,3 +68,25 @@ class TestCriteria(unittest.TestCase):
 
     def test_condition_answer(self):
         self.assertEqual(random_condition_answer, criteriaObject.return_condition(), f"The return value should be {random_condition_answer}")
+
+compilerObject = Compiler()
+random_url = ''.join(random.choice(string.ascii_lowercase) for i in range(50))
+
+class TestURLCompiling(unittest.TestCase):
+
+    def test_return_url(self):
+        compilerObject.url = random_url
+        self.assertEqual(random_url, compilerObject.return_url(), f"The return value should be {random_url}!")
+
+
+fileoperationObject = FileOperations()
+random_ids_list = [random.randint(1,100) for _ in range(25)]
+
+class TestFileOperations(unittest.TestCase):
+
+    def test_return_apartment_ids(self):
+        fileoperationObject.apartment_ids = random_ids_list
+        self.assertEqual(random_ids_list, fileoperationObject.return_apartment_ids(), f"The return value should be {random_ids_list}!")
+
+if __name__ == '__main__':
+    unittest.main()
